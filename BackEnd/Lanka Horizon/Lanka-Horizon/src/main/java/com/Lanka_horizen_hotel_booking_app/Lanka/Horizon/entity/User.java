@@ -27,11 +27,11 @@ public class User implements UserDetails{
     @Column(unique = true)
     private String email;
 
-    @NotBlank(message = "Password is Required")
-    private String password;
-
     @NotBlank(message = "Name is Required")
     private String name;
+
+    @NotBlank(message = "Password is Required")
+    private String password;
 
     @NotBlank(message = "Phone Number is Required")
     private String phoneNumber;
@@ -39,8 +39,8 @@ public class User implements UserDetails{
 
     private String role;
 
-
-    private List <Booking> bookings = new ArrayList<>() ;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Booking> bookings = new ArrayList<>() ;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -44,7 +44,7 @@ public class Booking {
 
     @ManyToOne(fetch = FetchType.LAZY )
     @JoinColumn(name = "room_id" )
-    private Root room;
+    private Room room;
 
     public void calculateTotalNumberOfGuest() {
         this.totalNumberOfGuest = this.numOfAdults + this.numOfChildren;
@@ -59,5 +59,20 @@ public class Booking {
     public void setNumOfChildren(@Min(value = 0, message = "Number of Children must not be less than 0 ") int numOfChildren) {
         this.numOfChildren = numOfChildren;
         calculateTotalNumberOfGuest();
+    }
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "id=" + id +
+                ", checkInDate=" + checkInDate +
+                ", checkOutDate=" + checkOutDate +
+                ", numOfAdults=" + numOfAdults +
+                ", numOfChildren=" + numOfChildren +
+                ", totalNumberOfGuest=" + totalNumberOfGuest +
+                ", bookingConfirmationCode='" + bookingConfirmationCode + '\'' +
+                ", user=" + user +
+                ", room=" + room +
+                '}';
     }
 }
